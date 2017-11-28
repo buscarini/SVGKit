@@ -11,7 +11,10 @@
 		 c.f. http://stackoverflow.com/questions/20571069/i-cannot-initialize-a-nsinputstream
 		 
 		 NB: current Apple docs don't seem to mention this - certainly not in the inputStreamWithURL: method? */
-		NSData *tempData = [NSData dataWithContentsOfURL:u]; 
+		NSData *tempData = [NSData dataWithContentsOfURL:u];
+		if (tempData == nil) {
+			return nil;
+		}
 		stream = [[[NSInputStream alloc] initWithData:tempData] autorelease]; 
 	}
 	//DO NOT DO THIS: let the parser do it at last possible moment (Apple has threading problems otherwise!) [stream open];

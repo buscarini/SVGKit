@@ -17,9 +17,11 @@
 
 -(SVGKSource *)sourceFromRelativePath:(NSString *)path
 {
-	if( self.effectiveURL != nil )
+	if( self.effectiveURL != nil && self.effectiveURL.absoluteString.length > 0)
 	{
+		NSLog(@"Effective url: %@", self.effectiveURL);
 		NSURL *url = [NSURL URLWithString:path relativeToURL:self.effectiveURL];
+		NSLog(@"url: %@", url);
 		return [SVGKSourceURL sourceFromURL:url];
 	}
 	else
